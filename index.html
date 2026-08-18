@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>CLF-C02 Cards — Sample</title>
+<meta name="apple-mobile-web-app-title" content="CLF-C02">
+<title>CLF-C02 Cards</title>
 <style>
 :root{--ink:#15181d;--mut:#6b7480;--rule:#dbe0e6;--bg:#f2f4f7;--card:#fff;--acc:#1f5fa8;
       --again:#b03030;--good:#1f5fa8;--easy:#1a7a45;--tag:#eef2f7;}
@@ -14,81 +15,95 @@ html,body{height:100%}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
      background:var(--bg);color:var(--ink);display:flex;flex-direction:column;
      -webkit-font-smoothing:antialiased;overscroll-behavior:none}
-button{font:inherit;border:0;cursor:pointer;border-radius:14px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px;
-     padding:calc(env(safe-area-inset-top) + 12px) 16px 10px;flex:none}
-.title{font-size:15px;font-weight:700}
-.counts{font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
-.counts b{color:var(--ink)}
-.track{height:5px;background:var(--rule);margin:0 16px;border-radius:3px;overflow:hidden;flex:none}
+#app{display:flex;flex-direction:column;height:100%}
+button{font:inherit;border:0;cursor:pointer;border-radius:14px;color:inherit;background:none}
+.top{display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 10px) 14px 8px;flex:none}
+.icon{width:42px;height:38px;display:flex;align-items:center;justify-content:center;font-size:19px;
+      background:#fff;border-radius:11px;box-shadow:0 1px 4px rgba(20,30,50,.08);flex:none}
+.icon:disabled{opacity:.32}
+.counts{flex:1;text-align:center;font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums;
+        line-height:1.25}
+.counts b{color:var(--ink);font-size:14px;display:block}
+.track{height:5px;background:var(--rule);margin:0 14px;border-radius:3px;overflow:hidden;flex:none}
 .track i{display:block;height:100%;background:var(--acc);width:0;transition:width .25s}
-main{flex:1;display:flex;flex-direction:column;padding:14px 16px;min-height:0}
+main{flex:1;display:flex;flex-direction:column;padding:12px 14px;min-height:0}
 .card{flex:1;background:var(--card);border-radius:22px;box-shadow:0 2px 14px rgba(20,30,50,.09);
-      padding:26px 24px;display:flex;flex-direction:column;min-height:0;overflow-y:auto;
+      padding:24px 22px;display:flex;flex-direction:column;min-height:0;overflow-y:auto;
       -webkit-overflow-scrolling:touch}
 .tag{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.06em;
      text-transform:uppercase;color:var(--acc);background:var(--tag);padding:5px 11px;border-radius:99px;
-     margin-bottom:18px;flex:none}
-.front{font-size:26px;font-weight:650;line-height:1.32}
-.divider{height:1px;background:var(--rule);margin:22px 0 20px;flex:none}
-.back{font-size:19px;line-height:1.5}
-.back b{font-weight:700}
-.back ul{margin:10px 0 0;padding-left:20px}
-.back li{margin:7px 0}
-.hint{margin-top:auto;padding-top:22px;text-align:center;color:var(--mut);font-size:15px;flex:none}
-.actions{flex:none;padding:12px 16px calc(env(safe-area-inset-bottom) + 16px);display:flex;gap:10px}
-.actions button{flex:1;padding:19px 8px;font-size:17px;font-weight:650;color:#fff;line-height:1.15}
+     margin-bottom:16px;flex:none}
+.front{font-size:25px;font-weight:650;line-height:1.32}
+.divider{height:1px;background:var(--rule);margin:20px 0 18px;flex:none}
+.back{font-size:18px;line-height:1.5}
+.back ul{margin:9px 0 0;padding-left:19px}
+.back li{margin:6px 0}
+.hint{margin-top:auto;padding-top:20px;text-align:center;color:var(--mut);font-size:15px;flex:none}
+.actions{flex:none;padding:11px 14px calc(env(safe-area-inset-bottom) + 14px);display:flex;gap:9px}
+.actions button{flex:1;padding:18px 6px;font-size:17px;font-weight:650;color:#fff;line-height:1.15}
 .actions .sub{display:block;font-size:11px;font-weight:500;opacity:.82;margin-top:3px}
 .b-again{background:var(--again)}.b-good{background:var(--good)}.b-easy{background:var(--easy)}
-.reveal{flex:none;padding:12px 16px calc(env(safe-area-inset-bottom) + 16px)}
-.reveal button{width:100%;padding:19px;font-size:18px;font-weight:650;background:var(--ink);color:#fff}
-.done{text-align:center;padding:44px 26px}
-.done h2{font-size:26px;margin:0 0 8px}
-.done p{color:var(--mut);font-size:16px;margin:0 0 26px}
-.done button{background:var(--acc);color:#fff;padding:17px 30px;font-size:17px;font-weight:650}
-.note{background:#fff;border-radius:14px;padding:14px 16px;margin:0 16px 14px;font-size:13.5px;
-      color:var(--mut);line-height:1.45}
-.note b{color:var(--ink)}
+.reveal{flex:none;padding:11px 14px calc(env(safe-area-inset-bottom) + 14px)}
+.reveal button{width:100%;padding:18px;font-size:18px;font-weight:650;background:var(--ink);color:#fff}
 
-/* ---- iPhone and small screens ---- */
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 14px 30px}
+.panel{background:#fff;border-radius:18px;padding:18px 18px 6px;margin:0 0 14px;
+       box-shadow:0 2px 10px rgba(20,30,50,.07)}
+.panel h2{font-size:17px;margin:0 0 4px}
+.panel p{font-size:14px;color:var(--mut);margin:0 0 14px;line-height:1.45}
+.deckrow{display:flex;align-items:center;gap:12px;padding:13px 2px;border-top:1px solid var(--rule)}
+.deckrow:first-of-type{border-top:0}
+.deckrow .nm{flex:1;font-size:16px;font-weight:600}
+.deckrow .ct{font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums}
+.sw{width:50px;height:30px;border-radius:99px;background:var(--rule);position:relative;flex:none;
+    transition:background .18s}
+.sw.on{background:var(--acc)}
+.sw i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;
+      transition:transform .18s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sw.on i{transform:translateX(20px)}
+.go{width:100%;padding:18px;font-size:18px;font-weight:650;background:var(--acc);color:#fff;
+    margin:6px 0 16px}
+.ghost{width:100%;padding:15px;font-size:16px;font-weight:600;background:#fff;color:var(--ink);
+       box-shadow:0 1px 5px rgba(20,30,50,.08);margin:0 0 12px}
+.bitem{background:#fff;border-radius:14px;padding:14px 16px;margin:0 0 9px;
+       box-shadow:0 1px 5px rgba(20,30,50,.06)}
+.bitem .bt{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+           color:var(--acc);margin-bottom:6px}
+.bitem .bf{font-size:16px;font-weight:600;line-height:1.35}
+.bitem .bb{font-size:15px;line-height:1.5;margin-top:12px;padding-top:12px;border-top:1px solid var(--rule);
+           color:#33383f}
+.bitem .bb ul{margin:8px 0 0;padding-left:18px}
+.bitem .jump{margin-top:12px;font-size:14px;font-weight:650;color:var(--acc)}
+.state{font-size:11px;color:var(--mut);float:right;font-weight:600}
+.sec{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);
+     margin:20px 0 9px;padding-left:3px}
+.done{text-align:center;padding:44px 24px}
+.done h2{font-size:26px;margin:0 0 8px}
+.done p{color:var(--mut);font-size:16px;margin:0 0 24px;line-height:1.5}
+.done button{background:var(--acc);color:#fff;padding:16px 28px;font-size:17px;font-weight:650;margin:0 5px 10px}
+
 @media (max-width:430px){
-  .top{padding:calc(env(safe-area-inset-top) + 10px) 13px 8px}
-  .title{font-size:14px}
-  .counts{font-size:12.5px}
-  .track{margin:0 13px}
-  .note{margin:0 13px 11px;padding:11px 13px;font-size:12.5px}
-  main{padding:11px 13px}
-  .card{padding:20px 18px;border-radius:18px}
-  .front{font-size:21px}
-  .back{font-size:16.5px}
-  .back li{margin:6px 0}
-  .divider{margin:17px 0 15px}
-  .tag{font-size:10px;margin-bottom:14px;padding:4px 9px}
-  .actions{gap:7px;padding:10px 13px calc(env(safe-area-inset-bottom) + 12px)}
+  .top{padding:calc(env(safe-area-inset-top) + 9px) 11px 7px}
+  .track{margin:0 11px}main{padding:10px 11px}.scroll{padding:0 11px 26px}
+  .card{padding:19px 17px;border-radius:18px}
+  .front{font-size:21px}.back{font-size:16.5px}.divider{margin:16px 0 14px}
+  .tag{font-size:10px;margin-bottom:13px;padding:4px 9px}
+  .actions{gap:7px;padding:9px 11px calc(env(safe-area-inset-bottom) + 11px)}
   .actions button{padding:15px 4px;font-size:15px;border-radius:12px}
   .actions .sub{font-size:9.5px;margin-top:2px}
-  .reveal{padding:10px 13px calc(env(safe-area-inset-bottom) + 12px)}
+  .reveal{padding:9px 11px calc(env(safe-area-inset-bottom) + 11px)}
   .reveal button{padding:16px;font-size:16.5px;border-radius:12px}
-  .hint{font-size:14px;padding-top:16px}
+  .hint{font-size:14px;padding-top:15px}
+  .counts{font-size:12px}.counts b{font-size:13px}
 }
-/* ---- very small phones (SE) ---- */
 @media (max-width:360px){
-  .front{font-size:19px}
-  .back{font-size:15.5px}
-  .actions button{font-size:14px}
-  .actions .sub{display:none}
+  .front{font-size:19px}.back{font-size:15.5px}
+  .actions button{font-size:14px}.actions .sub{display:none}
 }
-/* ---- phone in landscape: reclaim vertical space ---- */
 @media (max-height:500px) and (orientation:landscape){
-  .note{display:none}
-  .card{padding:16px 20px}
-  .front{font-size:19px}
-  .back{font-size:15.5px}
-  .divider{margin:13px 0 12px}
-  .tag{margin-bottom:10px}
-  .actions button{padding:12px 4px}
-  .reveal button{padding:13px}
-  .hint{padding-top:12px}
+  .card{padding:15px 20px}.front{font-size:19px}.back{font-size:15.5px}
+  .divider{margin:12px 0 11px}.tag{margin-bottom:9px}
+  .actions button{padding:12px 4px}.reveal button{padding:13px}.hint{padding-top:11px}
 }
 </style>
 </head>
@@ -96,46 +111,215 @@ main{flex:1;display:flex;flex-direction:column;padding:14px 16px;min-height:0}
 <div id="app"></div>
 
 <script>
-/* ---------- 12 sample cards, one from each planned source ---------- */
-const CARDS=[
-{t:"Missed · Test 2",f:"Instance is <b>stopped</b>. What are you billed for?",
- b:"<b>The EBS volumes only.</b><ul><li>No compute charge — the server is off</li><li>The disk still exists, so it still bills</li><li>An idle <b>Elastic IP</b> also bills</li></ul>"},
+/* ============================ DECK ============================ */
+/* d = deck key, f = front, b = back */
+const C=[
 
-{t:"Missed · Both tests",f:"Which is <b>not</b> a valid security group source?",
- b:"<b>A hostname or an instance ID.</b><ul><li>Valid: IP, CIDR range, security group ID, prefix list</li><li>Inbound takes a <b>source</b>; outbound takes a <b>destination</b></li><li>Allow-only — no deny rules</li></ul>"},
+/* ---------------- MISSED: your wrong answers, both tests ---------------- */
+{d:"miss",f:"Instance is <b>stopped</b>. What is billed?",b:"<b>EBS volumes only.</b><ul><li>No compute charge</li><li>Disk still exists, still bills</li><li>An <b>idle Elastic IP</b> also bills</li><li>Terminated: root volume deleted by default, nothing bills</li></ul>"},
+{d:"miss",f:"Which is <b>not</b> a valid security group source or destination?",b:"<b>Hostname or instance ID.</b><ul><li>Valid: IP, CIDR, security group ID, prefix list</li><li>Inbound takes a <b>source</b>, outbound a <b>destination</b></li><li>Allow-only, no deny rules</li><li>Stateful: return traffic automatic</li></ul>"},
+{d:"miss",f:"Business communication <i>and</i> customer service. Which two services?",b:"<b>Chime + Connect.</b><ul><li>Chime = employees talking to each other</li><li>Connect = customers talking to you</li><li>WorkSpaces = virtual desktops, not comms</li></ul><i>Note: TD tests Chime; it is not on AWS in-scope list.</i>"},
+{d:"miss",f:"Enterprise Support response times: production down vs. business-critical down?",b:"<b>1 hour</b> production down, <b>15 minutes</b> business-critical down.<ul><li>24h general guidance</li><li>12h system impaired</li><li>4h production impaired</li></ul>"},
+{d:"miss",f:"Cheapest support plan with the AWS Support API?",b:"<b>Business Support+.</b><ul><li>First paid tier; also full Trusted Advisor</li><li>Basic: account and billing only, no technical cases</li><li>Enterprise and Unified Operations have it but cost more</li></ul>"},
+{d:"miss",f:"Which plan first includes a dedicated billing and account specialist (Concierge)?",b:"<b>Enterprise Support.</b><ul><li>Also where the TAM starts</li><li>Rule: dedicated humans start at Enterprise; tools and APIs start at Business Support+</li></ul>"},
+{d:"miss",f:"Free technical assistance on Basic Support?",b:"<b>AWS re:Post.</b><ul><li>Community Q&amp;A with AWS-vetted answers</li><li>Trusted Advisor IS in Basic (core checks) but gives recommendations, not answers</li><li>TAM and Concierge are Enterprise only</li></ul>"},
+{d:"miss",f:"Discount that applies regardless of Region, family, size, OS, or tenancy?",b:"<b>Compute Savings Plans.</b><ul><li>Up to 66% off; covers EC2, Lambda, Fargate</li><li>EC2 Instance Savings Plans: up to 72%, locked to one family in one Region</li></ul>"},
+{d:"miss",f:"Which services have their own Reserved Instance model?",b:"<b>EC2, RDS, ElastiCache, Redshift, OpenSearch, DynamoDB</b> (reserved capacity).<ul><li>Not Batch, Beanstalk, EKS, Fargate, Lambda — those run on EC2 or use Savings Plans</li></ul>"},
+{d:"miss",f:"Traffic varies all day, servers sit half idle. Which cloud characteristic?",b:"<b>Elasticity.</b><ul><li>Capacity follows demand, up and down</li><li>Agility = speed of provisioning (the usual distractor)</li><li>No downtime mentioned, so not HA or fault tolerance</li></ul>"},
+{d:"miss",f:"Vertical vs. horizontal scaling?",b:"<b>Vertical = bigger box. Horizontal = more boxes.</b><ul><li>Vertical on EC2 requires stopping the instance</li><li>Horizontal is what Auto Scaling does, no downtime</li></ul>"},
+{d:"miss",f:"20 instances but only 4 busy overnight. Cheapest fix?",b:"<b>Auto Scaling group with dynamic policies.</b><ul><li>Reserved Instances would lock in the waste</li><li>Spot is interruptible, wrong for live traffic</li><li>Bigger instance type costs more</li></ul>"},
+{d:"miss",f:"Under-utilized and over-provisioned instances. Which service, least overhead?",b:"<b>AWS Compute Optimizer.</b><ul><li>Wrong <b>size</b> problem, not wrong <b>count</b></li><li>Auto Scaling fixes count, not size, and is a re-architecture</li><li>Savings Plans just make wrong-size cheaper</li></ul>"},
+{d:"miss",f:"What does AWS handle automatically, no customer action?",b:"<b>Hypervisor and everything below.</b><ul><li>Physical security, hardware, host OS, network fabric, media disposal</li><li>You own guest OS, your data, IAM, security groups, encryption choices</li><li>Test: could I click it in the console? Then it is yours.</li></ul>"},
+{d:"miss",f:"Multi-channel messaging that also <b>measures engagement</b>?",b:"<b>Amazon Pinpoint.</b><ul><li>Segmentation, campaigns, A/B testing, analytics</li><li>SNS = pub/sub, no analytics; SES = email only; SQS = queues</li></ul><i>Note: TD tests it; not on AWS in-scope list.</i>"},
+{d:"miss",f:"Shared file system, many Linux servers, massive parallel access?",b:"<b>Amazon EFS.</b><ul><li>NFS, thousands of concurrent clients</li><li>Windows or SMB is FSx instead</li><li>S3 is objects, no file semantics</li></ul>"},
+{d:"miss",f:"Centralized <b>Windows</b> File Server for multiple EC2 instances?",b:"<b>Amazon FSx (for Windows File Server).</b><ul><li>SMB protocol, Active Directory integration</li><li><b>EFS is Linux/NFS only</b> — that is the trap</li></ul>"},
+{d:"miss",f:"Fastest disk, <b>temporary</b> block storage?",b:"<b>Instance Store.</b><ul><li>Physically attached to the host, so lowest latency</li><li>Data lost on stop or terminate</li><li>EBS and EFS are persistent and network-attached</li></ul>"},
+{d:"miss",f:"Re-creatable secondary backup, low latency, cheapest S3 class?",b:"<b>S3 One Zone-IA.</b><ul><li>Single AZ, so cheaper than Standard-IA</li><li>Re-creatable is what makes single-AZ risk acceptable</li><li>Low latency rules out all Glacier tiers</li></ul>"},
+{d:"miss",f:"Edge locations — the two benefits?",b:"<b>Content closer to users + less load on origin.</b><ul><li>Two sides of one coin: faster for the user, lighter for you</li><li>Distractors are usually other services: Data Transfer Terminal, IoT Greengrass, S3</li></ul>"},
+{d:"miss",f:"Mask downtime by rerouting traffic to healthy instances?",b:"<b>Route 53 + ELB.</b><ul><li>Both do health checks and redirect traffic</li><li><b>Auto Scaling replaces instances but does not reroute</b> — the trap</li><li>VPC route tables have no health awareness</li></ul>"},
+{d:"miss",f:"Capture IP traffic to and from network interfaces?",b:"<b>VPC Flow Logs.</b><ul><li>ACCEPT and REJECT records at the ENI, subnet, or VPC level</li><li>Not real time — for analysis and troubleshooting</li><li>CloudTrail is API calls, not packets</li></ul>"},
+{d:"miss",f:"Root account compromised — the two best-practice actions?",b:"<b>Enable MFA + strong password policy.</b><ul><li>Also: delete root access keys, least privilege, rotate credentials</li><li>When three options are obviously bad security, take the two left</li></ul>"},
+{d:"miss",f:"Sign-up, sign-in, social IdPs and SAML 2.0 for a mobile app?",b:"<b>Amazon Cognito.</b><ul><li>User pool = who are you. Identity pool = temporary AWS credentials</li><li>Provides a customizable hosted UI</li><li>Scales to millions; users need no AWS account</li></ul>"},
+{d:"miss",f:"Guarantee no object in a bucket can ever be public?",b:"<b>S3 Block Public Access.</b><ul><li>Overrides bucket policies and object ACLs</li><li>Bucket or account level</li><li>S3 has no security groups and no network ACLs</li></ul>"},
+{d:"miss",f:"Query data directly in S3 with SQL, no loading?",b:"<b>Athena</b> (serverless) or <b>Redshift Spectrum</b> (from a cluster).<ul><li>Neptune is graph, ElastiCache is cache, MQ is a broker</li></ul>"},
+{d:"miss",f:"Which S3 action does <b>not</b> cost anything?",b:"<b>Uploading — data transfer IN is free.</b><ul><li>S3 cost = storage + requests + transfer <b>OUT</b></li><li>GET requests, storage class changes, and transfers out all bill</li></ul>"},
+{d:"miss",f:"Coordinate multiple services into a serverless workflow?",b:"<b>AWS Step Functions.</b><ul><li>Sequence, retries, branching, durable state</li><li>SQS buffers, EventBridge routes, Batch runs batch jobs</li></ul>"},
+{d:"miss",f:"Sell your catalog of custom AMIs?",b:"<b>AWS Marketplace.</b><ul><li>Marketplace = selling to the world</li><li>Service Catalog = publishing internally to your own org</li></ul>"},
+{d:"miss",f:"Build native iOS apps in AWS?",b:"<b>Amazon EC2 Mac instances.</b><ul><li>Compiling iOS requires macOS and Xcode</li><li>Amplify is backend hosting; App Runner is containers</li></ul>"},
+{d:"miss",f:"What is <b>not</b> required when launching an EBS-backed EC2 instance?",b:"<b>An Elastic IP address.</b><ul><li>Required: AMI, instance type, VPC and subnet, security group, root volume</li><li>A public IP may be auto-assigned by the subnet setting</li></ul>"},
+{d:"miss",f:"Disaster recovery for <b>EC2</b> — the two options?",b:"<b>EBS snapshots + AMIs.</b><ul><li>Copy both to a second Region</li><li>RDS snapshots are a trap when the stem restricts scope to EC2</li></ul>"},
+{d:"miss",f:"CAF Platform perspective — who owns it?",b:"<b>CTO, technology leaders, architects, engineers.</b><ul><li>Platform = the people who build things</li><li>CFO is Business; CISO is Security</li><li>CIO appears in three perspectives, so never the distinctive answer</li></ul>"},
+{d:"miss",f:"Which CAF perspective bridges technology and business?",b:"<b>People.</b><ul><li>Culture, leadership, org structure, workforce</li><li>Governance = prioritize and measure risk</li><li>Operations = run the services</li></ul>"},
+{d:"miss",f:"CAF Security capability for protecting workloads from unauthorized access?",b:"<b>Infrastructure Protection.</b><ul><li>Protect = Infrastructure Protection</li><li>Detect = Threat Detection</li><li>Respond = Incident Response</li></ul>"},
+{d:"miss",f:"Which AWS resources are <b>zonal</b>?",b:"<b>EC2 instances, EBS volumes, subnets.</b><ul><li>Global: IAM, STS, Route 53, CloudFront, WAF</li><li><b>EBS snapshots are regional</b>, not zonal</li><li>Everything else is regional</li></ul>"},
+{d:"miss",f:"Site-to-Site VPN — the two endpoints?",b:"<b>Virtual private gateway (AWS side) + customer gateway (your side).</b><ul><li>NAT gateway = private subnet outbound</li><li>VPC peering = VPC to VPC</li><li>Route 53 Resolver handles hybrid <b>DNS</b>, not the tunnel</li></ul>"},
 
-{t:"Cheat sheet · Storage",f:"Many Linux servers need one shared file system. Which service?",
- b:"<b>Amazon EFS.</b><ul><li>NFS, thousands of concurrent clients</li><li><b>Windows or SMB → FSx</b> instead</li><li>One server only → EBS</li><li>Temporary and fastest → Instance Store</li></ul>"},
+/* ---------------- STORAGE ---------------- */
+{d:"storage",f:"Storage decision tree — the two questions?",b:"<b>1. Database or files?</b> Database goes to RDS or DynamoDB.<br><b>2. How many machines at once?</b><ul><li>One: EBS, or Instance Store if throwaway</li><li>Many: EFS (Linux) or FSx for Windows</li></ul>"},
+{d:"storage",f:"EBS vs. EFS in one line each?",b:"<b>EBS = a drive for one server. EFS = a shared drive for many.</b><ul><li>EBS attaches to a single instance in one AZ</li><li>EFS is regional and mounts on thousands of clients</li></ul>"},
+{d:"storage",f:"Why is Instance Store faster than EBS?",b:"<b>It is physically attached to the host.</b><ul><li>EBS and EFS travel over the network</li><li>The price of that speed is losing data on stop or terminate</li></ul>"},
+{d:"storage",f:"S3 storage classes by access pattern?",b:"<ul><li><b>Standard</b> — frequent</li><li><b>Standard-IA</b> — infrequent, multi-AZ</li><li><b>One Zone-IA</b> — infrequent, re-creatable, single AZ, cheapest IA</li><li><b>Intelligent-Tiering</b> — unpredictable access</li><li><b>Glacier Instant</b> — archive, milliseconds</li><li><b>Glacier Flexible</b> — minutes to hours</li><li><b>Deep Archive</b> — hours, cheapest</li></ul>"},
+{d:"storage",f:"Fixed 30-day rule vs. unknown access pattern for S3 tiering?",b:"<b>Fixed rule = Lifecycle policy. Unknown pattern = Intelligent-Tiering.</b><ul><li>If the stem gives you a number of days, it is a lifecycle rule</li></ul>"},
+{d:"storage",f:"Upload a single 15 GB object reliably over a flaky connection?",b:"<b>Multipart Upload.</b><ul><li>Splits into parts, uploads in parallel, retries individually</li><li>Required by AWS above 5 GB</li><li>Transfer Acceleration is about distance, not resumability</li></ul>"},
+{d:"storage",f:"Speed up uploads from users far from the bucket Region?",b:"<b>S3 Transfer Acceleration.</b><ul><li>Routes through the nearest edge location onto the AWS backbone</li></ul>"},
+{d:"storage",f:"Recover an object that was overwritten or deleted?",b:"<b>S3 Versioning.</b><ul><li>Keeps every version of an object</li><li>Add <b>MFA Delete</b> to require a second factor before permanent deletion</li></ul>"},
+{d:"storage",f:"AWS Backup vs. Elastic Disaster Recovery?",b:"<b>Backup = scheduled policy-driven copies. DRS = continuous replication for fast failover.</b><ul><li>Backup centralizes across many services</li><li>DRS is for minimizing downtime and data loss</li></ul>"},
+{d:"storage",f:"AWS Storage Gateway — what is it for?",b:"<b>A bridge from on-premises apps to AWS storage.</b><ul><li>File Gateway gives a file interface into S3</li><li>Not shared storage for a fleet of EC2 instances — that is EFS</li></ul>"},
 
-{t:"Cheat sheet · Monitoring",f:"CloudTrail vs. Config — what does each answer?",
- b:"<b>CloudTrail = who did it. Config = what it looks like.</b><ul><li>Who made the bucket public, and from what IP → <b>CloudTrail</b></li><li>Which buckets are public, and were they compliant last Tuesday → <b>Config</b></li></ul>"},
+/* ---------------- NETWORKING ---------------- */
+{d:"net",f:"Rerouting traffic vs. replacing servers?",b:"<b>Route 53 and ELB reroute. Auto Scaling replaces.</b><ul><li>Reroute, redirect, failover, mask downtime → Route 53 / ELB</li><li>Maintain capacity, replace unhealthy → Auto Scaling</li></ul>"},
+{d:"net",f:"Internet gateway vs. NAT gateway?",b:"<b>IGW = public subnet, both directions. NAT = private subnet, outbound only.</b><ul><li>A NAT gateway itself sits in a public subnet and depends on an IGW</li><li>Egress-only IGW is the IPv6 equivalent of NAT</li></ul>"},
+{d:"net",f:"Sort connectivity options by which two ends they join.",b:"<ul><li>Office ↔ AWS: <b>Site-to-Site VPN</b> or <b>Direct Connect</b></li><li>User ↔ AWS: <b>Client VPN</b></li><li>VPC ↔ VPC: <b>VPC Peering</b></li><li>Many ↔ many: <b>Transit Gateway</b></li><li>Inside → internet: <b>NAT gateway</b></li></ul>"},
+{d:"net",f:"Direct Connect vs. Site-to-Site VPN?",b:"<b>Direct Connect = dedicated private line, consistent performance. VPN = encrypted over the public internet.</b><ul><li>Stem saying consistent or predictable network experience → Direct Connect</li></ul>"},
+{d:"net",f:"CloudFront vs. Global Accelerator?",b:"<b>CloudFront caches web content. Global Accelerator gives static IPs and routes TCP/UDP over the AWS backbone.</b><ul><li>Non-HTTP protocols or static anycast IPs → Global Accelerator</li></ul>"},
+{d:"net",f:"AWS PrivateLink — what does it do?",b:"<b>Private connectivity to AWS or partner services without traversing the internet.</b><ul><li>Traffic stays on the AWS network</li><li>Removes the need for an internet gateway or NAT for that service</li></ul>"},
+{d:"net",f:"Security group vs. network ACL?",b:"<b>SG = instance level, stateful, allow-only. NACL = subnet level, stateless, allow AND deny.</b><ul><li>Blocking one malicious IP requires a <b>NACL</b></li><li>NACLs evaluate in rule-number order</li></ul>"},
+{d:"net",f:"How does a security group restrict without deny rules?",b:"<b>Implicit deny-all.</b><ul><li>Anything not explicitly allowed is already blocked</li><li>Exclusive access by omission, not by a deny rule</li><li>Explicit deny is only needed to block one thing while allowing the rest</li></ul>"},
+{d:"net",f:"Amazon Route 53 — what are its jobs?",b:"<b>DNS, domain registration, health checks, and routing policies.</b><ul><li>Failover, latency, geolocation, weighted routing</li><li><b>Route 53 Resolver</b> handles hybrid DNS with on-premises</li></ul>"},
+{d:"net",f:"Amazon API Gateway — one line?",b:"<b>Create, publish, secure, and throttle APIs.</b><ul><li>Front door for Lambda and other backends</li><li>Appears constantly in serverless architecture questions</li></ul>"},
 
-{t:"In scope · ML",f:"Pull text and data out of scanned invoices. Which service?",
- b:"<b>Amazon Textract.</b><ul><li>Textract → extract text <i>from documents</i></li><li>Comprehend → find <i>meaning</i> in text you already have</li><li>Rekognition → images and video</li></ul>"},
+/* ---------------- MONITORING & COST ---------------- */
+{d:"cost",f:"CloudWatch vs. CloudTrail vs. Config?",b:"<ul><li><b>CloudWatch</b> — is it healthy? metrics, logs, alarms</li><li><b>CloudTrail</b> — <b>who</b> did it, when, from what IP</li><li><b>Config</b> — <b>what state</b> is it in, and was it compliant over time</li></ul>"},
+{d:"cost",f:"S3 bucket went public. Which service for who did it vs. which buckets are public?",b:"<b>Who did it = CloudTrail. Which are public now = Config.</b><ul><li>Action vs. state — the single most repeated distinction</li></ul>"},
+{d:"cost",f:"Which part of my distributed app is slow?",b:"<b>AWS X-Ray.</b><ul><li>Traces one request across API Gateway, Lambda, DynamoDB</li><li>CloudWatch tells you THAT it is slow; X-Ray tells you WHERE</li></ul>"},
+{d:"cost",f:"Budgets vs. Cost Explorer vs. Trusted Advisor vs. Pricing Calculator?",b:"<ul><li><b>Pricing Calculator</b> — before you build</li><li><b>Budgets</b> — alert me, including on <b>forecast</b></li><li><b>Cost Explorer</b> — analyse and forecast past spend</li><li><b>Trusted Advisor</b> — what is wasteful right now</li></ul>"},
+{d:"cost",f:"Why does Budgets beat a CloudWatch billing alarm?",b:"<b>Budgets can alert on a forecast.</b><ul><li>CloudWatch billing alarms fire only on charges already incurred</li><li>The billing metric exists only in us-east-1</li><li>Budget Actions can also apply a policy or stop instances</li></ul>"},
+{d:"cost",f:"Trusted Advisor — the five check categories?",b:"<b>Cost optimization, performance, security, fault tolerance, service limits.</b><ul><li>Basic gets core checks only; Business Support+ gets the full set</li><li>Trusted Advisor <b>Priority</b> requires Enterprise</li></ul>"},
+{d:"cost",f:"Trusted Advisor vs. Compute Optimizer?",b:"<b>Trusted Advisor = is anything wasteful or misconfigured. Compute Optimizer = is this the right size and type.</b><ul><li>The word <b>rightsize</b> means Compute Optimizer</li></ul>"},
+{d:"cost",f:"Compute Optimizer — the three recommendation preferences?",b:"<ol><li><b>Enhanced infrastructure metrics</b> — look-back 14 days to <b>3 months</b> (the only paid feature)</li><li><b>Inferred workload type</b> — effort to move x86 to Graviton</li><li><b>Graviton recommendations</b> — price and performance impact</li></ol>"},
+{d:"cost",f:"Compute Optimizer delegated administrator — key fact?",b:"<b>Exactly one per organization.</b><ul><li>A member account delegated by the management account</li><li>Can get and export recommendations, set preferences, set opt-in status</li><li>Register via console or CLI</li></ul>"},
+{d:"cost",f:"AWS Cost and Usage Reports — what is it?",b:"<b>The most granular billing data available.</b><ul><li>Line-item detail, far deeper than Cost Explorer</li><li>Delivered to an S3 bucket</li></ul>"},
+{d:"cost",f:"Attribute costs to departments or projects?",b:"<b>Cost allocation tags.</b><ul><li>Activated in the Billing console</li><li>Then filter and group by tag in Cost Explorer</li></ul>"},
+{d:"cost",f:"Multiple accounts, one bill, combined volume discounts?",b:"<b>Consolidated billing through AWS Organizations.</b><ul><li>Usage aggregates so tiered discounts apply to the total</li><li>Reserved Instances and Savings Plans can be shared across accounts</li></ul>"},
+{d:"cost",f:"AWS Health Dashboard vs. CloudWatch?",b:"<b>Health Dashboard reports AWS problems affecting you. CloudWatch reports your resources' metrics.</b><ul><li>An AWS service outage notice is Health Dashboard</li></ul>"},
 
-{t:"In scope · ML",f:"Polly vs. Transcribe — which direction is which?",
- b:"<b>Polly Produces speech. Transcribe writes down speech.</b><ul><li>Polly: text → audio</li><li>Transcribe: audio → text</li><li>Call recordings → Transcribe</li></ul>"},
+/* ---------------- SECURITY ---------------- */
+{d:"sec",f:"Did it arrive as an HTTP request to my web app?",b:"<ul><li>Yes, and it is <b>volume</b> → <b>Shield</b> (DDoS)</li><li>Yes, and it is <b>malicious content</b> (SQLi, XSS) → <b>WAF</b></li><li>No, it is account-level weirdness → <b>GuardDuty</b></li></ul>"},
+{d:"sec",f:"GuardDuty → Detective → Security Hub. What does each do?",b:"<b>GuardDuty detects. Detective investigates why. Security Hub aggregates.</b><ul><li>GuardDuty analyses CloudTrail, VPC Flow Logs, DNS logs</li><li>Security Hub is the single pane across services and accounts</li></ul>"},
+{d:"sec",f:"Macie vs. Inspector?",b:"<b>Macie finds sensitive data in S3. Inspector finds vulnerabilities in compute.</b><ul><li>Macie: PII, financial data, ML-based classification</li><li>Inspector: EC2, container images, Lambda — software CVEs and network exposure</li></ul>"},
+{d:"sec",f:"IAM user vs. group vs. role?",b:"<ul><li><b>User</b> — long-term identity, holds access keys and passwords</li><li><b>Group</b> — permission bundle only, cannot be assumed, issues no credentials</li><li><b>Role</b> — temporary, assumed, no stored credentials. Best for EC2 and cross-account</li></ul>"},
+{d:"sec",f:"Test what an IAM policy will permit before attaching it?",b:"<b>IAM Policy Simulator.</b><ul><li>Tests identity-based and resource-based policies</li><li>Config evaluates deployed resources; CloudTrail records the past</li></ul>"},
+{d:"sec",f:"KMS vs. CloudHSM vs. Secrets Manager vs. ACM?",b:"<ul><li><b>KMS</b> — managed encryption keys, the default answer</li><li><b>CloudHSM</b> — dedicated single-tenant hardware</li><li><b>Secrets Manager</b> — store and rotate credentials</li><li><b>ACM</b> — TLS certificates</li></ul>"},
+{d:"sec",f:"Where do you download AWS SOC and PCI reports?",b:"<b>AWS Artifact.</b><ul><li>Artifact = AWS's own compliance paperwork</li><li><b>Audit Manager</b> = build evidence for <i>your</i> audit</li></ul>"},
+{d:"sec",f:"Cognito vs. IAM Identity Center vs. Directory Service?",b:"<ul><li><b>Cognito</b> — consumer app users</li><li><b>IAM Identity Center</b> — employees across AWS accounts and business apps</li><li><b>Directory Service</b> — managed Microsoft Active Directory</li></ul>"},
+{d:"sec",f:"Restrict access to S3 content served through CloudFront?",b:"<b>Origin Access Control (OAC).</b><ul><li>Makes the bucket reachable only through CloudFront</li><li>Signed URLs and signed cookies restrict who can view</li></ul>"},
+{d:"sec",f:"Control which services member accounts can use across an organization?",b:"<b>Service Control Policies (SCPs) in AWS Organizations.</b><ul><li>SCPs set the maximum permissions; they do not grant permissions</li></ul>"},
+{d:"sec",f:"AWS Firewall Manager and AWS RAM — one line each?",b:"<b>Firewall Manager</b> centrally manages WAF and Shield rules across accounts.<br><b>RAM</b> shares resources such as subnets across accounts."},
 
-{t:"In scope · Migration",f:"Which two services travel together migrating Oracle → Aurora?",
- b:"<b>Schema Conversion Tool (SCT) + Database Migration Service (DMS).</b><ul><li>SCT converts the schema when the <b>engine changes</b></li><li>DMS moves the data, source stays live</li><li>Same engine? DMS alone</li></ul>"},
+/* ---------------- CLOUD CONCEPTS ---------------- */
+{d:"concept",f:"CAPEX to OPEX — what actually changes?",b:"<b>Large upfront capital spend becomes variable operational spend.</b><ul><li>You stop buying servers and pay for consumption</li><li>AWS never guarantees a smaller bill — beware options promising savings</li></ul>"},
+{d:"concept",f:"What is an Availability Zone?",b:"<b>One or more discrete data centers with redundant power, networking, and connectivity, in separate facilities.</b><ul><li>Region contains multiple AZs</li><li>Edge locations are separate and far more numerous</li></ul>"},
+{d:"concept",f:"The 4 cloud best practices (older whitepaper)?",b:"<b>Design for failure · Decouple your components · Implement elasticity · Think parallel.</b><ul><li>Different list from the Well-Architected principles</li><li>Decouple is the answer when one component takes down everything</li></ul>"},
+{d:"concept",f:"Six AWS CAF perspectives?",b:"<b>Business · People · Governance · Platform · Security · Operations.</b><ul><li>Business = outcomes; People = culture; Governance = risk and priority</li><li>Platform = build; Security = protect; Operations = run</li></ul>"},
+{d:"concept",f:"The 7 Rs of migration?",b:"<b>Rehost · Replatform · Repurchase · Refactor · Retire · Retain · Relocate.</b><ul><li>Rehost = lift and shift</li><li>Replatform = lift and tinker (EC2 to RDS)</li><li>Repurchase = move to SaaS</li></ul>"},
+{d:"concept",f:"Elasticity vs. agility vs. HA vs. durability?",b:"<ul><li><b>Elasticity</b> — capacity follows demand</li><li><b>Agility</b> — provision fast, experiment</li><li><b>High availability</b> — stays up when things break</li><li><b>Durability</b> — data is not lost</li></ul>"},
+{d:"concept",f:"AWS Outposts — what is it?",b:"<b>AWS-managed hardware installed in your own data center.</b><ul><li>Same APIs on-premises</li><li>For low latency to local systems or data residency rules</li></ul>"},
+{d:"concept",f:"AWS Control Tower vs. AWS Organizations?",b:"<b>Organizations is the structure. Control Tower is the guided setup on top.</b><ul><li>Organizations: accounts, OUs, SCPs, consolidated billing</li><li>Control Tower: landing zone with guardrails applied automatically</li></ul>"},
+{d:"concept",f:"Service Quotas — what is it for?",b:"<b>View current service limits and request increases.</b><ul><li>Formerly called service limits</li><li>Trusted Advisor also flags when you approach a limit</li></ul>"},
 
-{t:"In scope · Analytics",f:"Name the analytics pipeline in order.",
- b:"<b>Kinesis → Glue → S3 → Athena/Redshift → QuickSight.</b><ul><li>Kinesis ingests streaming data</li><li>Glue transforms (ETL)</li><li>Athena queries S3 in place</li><li>QuickSight visualizes</li></ul>"},
+/* ---------------- WELL-ARCHITECTED ---------------- */
+{d:"wa",f:"The 6 general design principles — mnemonic?",b:"<b>STAGED</b><ul><li><b>S</b>top guessing capacity</li><li><b>T</b>est at production scale</li><li><b>A</b>utomate with experimentation in mind</li><li><b>G</b>ame days</li><li><b>E</b>volutionary architectures</li><li><b>D</b>rive using data</li></ul>"},
+{d:"wa",f:"Test at production scale vs. game days?",b:"<b>Testing is about environment SIZE. Game days are about rehearsing FAILURE.</b><ul><li>Any mention of outage, incident, or simulating failure → game days</li><li>Game days ≈ chaos engineering, AWS Fault Injection Service</li></ul>"},
+{d:"wa",f:"The 6 pillars, in order?",b:"<b>Operational Excellence · Security · Reliability · Performance Efficiency · Cost Optimization · Sustainability.</b><ul><li>Sustainability was added in 2021 — a list of five is stale material</li></ul>"},
+{d:"wa",f:"Reliability vs. Performance Efficiency?",b:"<b>Reliability = does it survive. Performance Efficiency = is it the right size and type.</b><ul><li>Selecting the right number and type of resources is <b>Performance Efficiency</b></li></ul>"},
+{d:"wa",f:"Operational Excellence vs. Reliability?",b:"<b>OpEx = how you run and improve. Reliability = whether it recovers.</b><ul><li>Runbooks, deployment process, monitoring practice → OpEx</li><li>Failover, backups, Multi-AZ → Reliability</li></ul>"},
+{d:"wa",f:"Cost Optimization vs. Sustainability?",b:"<b>Both remove waste, but Sustainability is about environmental impact and resource efficiency.</b><ul><li>Carbon, footprint, minimizing total resources → Sustainability</li></ul>"},
+{d:"wa",f:"Key AWS service for each pillar?",b:"<ul><li>Operational Excellence — <b>CloudFormation</b></li><li>Security — <b>IAM</b></li><li>Reliability — <b>CloudWatch</b></li><li>Performance Efficiency — <b>CloudWatch</b></li><li>Cost Optimization — <b>Cost Explorer</b></li><li>Sustainability — <b>EC2 Auto Scaling</b></li></ul>"},
+{d:"wa",f:"Stop guessing capacity is a design principle of which <b>pillar</b>?",b:"<b>Reliability.</b><ul><li>Cost Optimization is the usual distractor and is wrong</li><li>It also appears in the 6 general principles, which is why it feels ambiguous</li></ul>"},
+{d:"wa",f:"Which two pillars both list <b>use managed services</b>?",b:"<b>Operational Excellence and Sustainability.</b><ul><li>Reducing operational burden → OpEx</li><li>Reducing environmental footprint → Sustainability</li></ul>"},
+{d:"wa",f:"Security pillar — how many design principles, and the exact traceability wording?",b:"<b>Seven. AWS says MAINTAIN traceability.</b><ul><li>Many third-party sites write Enable traceability — wrong</li><li>Also: strong identity foundation, security at all layers, automate best practices, protect data in transit and at rest, keep people away from data, prepare for events</li></ul>"},
+{d:"wa",f:"Reliability pillar — the 5 design principles?",b:"<ul><li>Automatically recover from failure</li><li>Test recovery procedures</li><li>Scale horizontally to increase aggregate availability</li><li>Stop guessing capacity</li><li>Manage change through automation</li></ul>"},
+{d:"wa",f:"Framework vs. Well-Architected Tool?",b:"<b>Framework = body of knowledge. Tool = the console service.</b><ul><li>Whitepaper, best practices, questions → Framework</li><li>Review my workload, generate a report → Tool</li></ul>"},
+{d:"wa",f:"Infrastructure Protection appears in which two frameworks?",b:"<b>Well-Architected Security pillar AND CAF Security perspective.</b><ul><li>Check whether the stem says <b>pillar</b> or <b>perspective</b> before answering</li></ul>"},
 
-{t:"TD scenarios",f:"BYOL with visibility into physical sockets and cores. Which purchasing option?",
- b:"<b>Dedicated Hosts.</b><ul><li>Only option exposing socket and core detail for per-socket licensing</li><li>Dedicated <i>Instances</i> = isolated hardware, but no socket visibility</li></ul>"},
+/* ---------------- IN-SCOPE SERVICES: ML ---------------- */
+{d:"svc",f:"Pull text and data out of scanned documents?",b:"<b>Amazon Textract.</b><ul><li>Forms, tables, invoices, scanned PDFs</li><li>Comprehend finds meaning in text you already have</li><li>Rekognition is images and video, not documents</li></ul>"},
+{d:"svc",f:"Sentiment, entities, and key phrases from text?",b:"<b>Amazon Comprehend.</b><ul><li>Natural language processing on text you already have</li><li>Customer review sentiment is the classic scenario</li></ul>"},
+{d:"svc",f:"Analyze images and video for objects and faces?",b:"<b>Amazon Rekognition.</b><ul><li>Object and scene detection, face analysis, content moderation</li></ul>"},
+{d:"svc",f:"Polly vs. Transcribe — which direction?",b:"<b>Polly Produces speech (text → audio). Transcribe writes down speech (audio → text).</b><ul><li>Call recordings and captions → Transcribe</li><li>Applications that talk → Polly</li></ul>"},
+{d:"svc",f:"Build a chatbot with voice and text?",b:"<b>Amazon Lex.</b><ul><li>Same technology that powers Alexa</li><li>Often paired with Amazon Connect for contact centers</li></ul>"},
+{d:"svc",f:"Translate content between languages?",b:"<b>Amazon Translate.</b><ul><li>Neural machine translation</li><li>Localize, multilingual are the trigger words</li></ul>"},
+{d:"svc",f:"Build, train, and deploy your own ML model?",b:"<b>Amazon SageMaker AI.</b><ul><li>Managed AI services (Rekognition, Comprehend, Polly) are pre-trained — you just call an API</li><li>No ML expertise required → managed service. Custom model → SageMaker</li></ul>"},
+{d:"svc",f:"Amazon Q — what is it?",b:"<b>A generative AI assistant for business and development.</b><ul><li>Answers questions about your company data</li><li>Also assists with code and AWS questions</li></ul>"},
 
-{t:"TD scenarios",f:"Interruptible, fault-tolerant batch job. Cheapest option and how much off?",
- b:"<b>Spot Instances — up to 90% off On-Demand.</b><ul><li>Interruptible is the trigger word</li><li>If it <i>cannot</i> be interrupted, Spot is instantly wrong</li></ul>"},
+/* ---------------- IN-SCOPE SERVICES: MIGRATION ---------------- */
+{d:"svc",f:"Migration sequence — four stages and their services?",b:"<b>Discover → Evaluate → Track → Migrate.</b><ul><li><b>Application Discovery Service</b> — inventory on-prem servers</li><li><b>Migration Evaluator</b> — business case and cost estimate</li><li><b>Migration Hub</b> — track progress in one dashboard</li><li><b>MGN</b> or <b>DMS</b> — do the move</li></ul>"},
+{d:"svc",f:"Application Migration Service vs. DMS?",b:"<b>MGN moves whole servers. DMS moves database contents.</b><ul><li>Rehost the server → MGN</li><li>MySQL into RDS with the source live → DMS</li></ul>"},
+{d:"svc",f:"Migrating Oracle to Aurora — which two services?",b:"<b>Schema Conversion Tool + Database Migration Service.</b><ul><li>SCT converts schema when the <b>engine changes</b></li><li>Same engine? DMS alone is enough</li></ul>"},
+{d:"svc",f:"Need the projected cost of migrating before committing?",b:"<b>Migration Evaluator.</b><ul><li>Builds the business case</li><li>Discovery Service inventories; Evaluator prices it</li></ul>"},
 
-{t:"Well-Architected",f:"The 6 general design principles — mnemonic?",
- b:"<b>STAGED</b><ul><li><b>S</b>top guessing capacity</li><li><b>T</b>est at production scale</li><li><b>A</b>utomate with experimentation in mind</li><li><b>G</b>ame days</li><li><b>E</b>volutionary architectures</li><li><b>D</b>rive using data</li></ul>"},
+/* ---------------- IN-SCOPE SERVICES: ANALYTICS ---------------- */
+{d:"svc",f:"The analytics pipeline, in order?",b:"<b>Kinesis → Glue → S3 → Athena or Redshift → QuickSight.</b><ul><li>Kinesis ingests streaming data</li><li>Glue is serverless ETL plus a data catalog</li><li>QuickSight builds the dashboards</li></ul>"},
+{d:"svc",f:"Ingest streaming data in real time?",b:"<b>Amazon Kinesis.</b><ul><li>Clickstreams, logs, IoT telemetry</li><li>Streaming, real time, as it arrives are the triggers</li></ul>"},
+{d:"svc",f:"Serverless ETL and a data catalog?",b:"<b>AWS Glue.</b><ul><li>Discovers, cleans, and transforms data</li><li>Crawlers populate the Glue Data Catalog used by Athena</li></ul>"},
+{d:"svc",f:"Managed Hadoop and Spark?",b:"<b>Amazon EMR.</b><ul><li>Big data processing frameworks on managed clusters</li></ul>"},
+{d:"svc",f:"Amazon OpenSearch Service — what is it for?",b:"<b>Search and log analytics.</b><ul><li>Full-text search, centralized logs, Kibana-style dashboards</li><li>Often receives findings from Macie or GuardDuty for deeper analysis</li><li>CloudWatch is metrics and alarms; OpenSearch is heavy log search</li></ul>"},
+{d:"svc",f:"Business intelligence dashboards for non-technical users?",b:"<b>Amazon QuickSight.</b><ul><li>Visualization layer at the end of the analytics pipeline</li></ul>"},
 
-{t:"Well-Architected",f:"\"Stop guessing capacity\" is a design principle of which <b>pillar</b>?",
- b:"<b>Reliability.</b><ul><li>Cost Optimization is the usual distractor — wrong</li><li>It also appears in the 6 general principles, which is why it feels ambiguous</li></ul>"}
+/* ---------------- IN-SCOPE SERVICES: DATABASE ---------------- */
+{d:"svc",f:"Which database for which need?",b:"<ul><li>Relational → <b>RDS</b>, or <b>Aurora</b> for performance</li><li>Key-value / document at scale → <b>DynamoDB</b></li><li>MongoDB-compatible → <b>DocumentDB</b></li><li>In-memory cache → <b>ElastiCache</b></li><li>Graph → <b>Neptune</b></li><li>Warehouse → <b>Redshift</b></li></ul>"},
+{d:"svc",f:"Amazon Aurora — the headline facts?",b:"<b>AWS's MySQL- and PostgreSQL-compatible engine.</b><ul><li>Up to 5x MySQL and 3x PostgreSQL throughput</li><li>Six copies of data across three Availability Zones</li></ul>"},
+{d:"svc",f:"Cache the results of I/O-intensive database queries?",b:"<b>Amazon ElastiCache.</b><ul><li>In-memory, so results return without hitting the database</li><li>A read replica still executes the query — the near-miss answer</li></ul>"},
+{d:"svc",f:"Increase read throughput on a read-heavy database?",b:"<b>RDS read replicas.</b><ul><li>Multi-AZ is for <b>availability</b>, not read scaling</li><li>Read replicas can also be cross-Region</li></ul>"},
+{d:"svc",f:"JSON documents, millisecond latency, unlimited scale?",b:"<b>Amazon DynamoDB.</b><ul><li>NoSQL key-value and document</li><li>DAX is its in-memory accelerator</li></ul>"},
+
+/* ---------------- IN-SCOPE SERVICES: COMPUTE, CONTAINERS, DEV ---------------- */
+{d:"svc",f:"Run containers without managing any servers?",b:"<b>AWS Fargate</b> with ECS or EKS.<ul><li>ECS or EKS on the EC2 launch type means you manage the instances</li><li>Fargate has no Reserved Instances — Savings Plans only</li></ul>"},
+{d:"svc",f:"ECS vs. EKS vs. ECR?",b:"<ul><li><b>ECS</b> — AWS's own container orchestrator</li><li><b>EKS</b> — managed Kubernetes</li><li><b>ECR</b> — private registry for container images</li></ul>"},
+{d:"svc",f:"Simplest way to run a small website with predictable pricing?",b:"<b>Amazon Lightsail.</b><ul><li>Bundled compute, storage, and networking at a flat monthly price</li><li>Beanstalk is for deploying app code onto managed infrastructure</li></ul>"},
+{d:"svc",f:"AWS Elastic Beanstalk — one line?",b:"<b>Upload your code and AWS provisions and manages the infrastructure.</b><ul><li>You still own the underlying EC2, and can configure it</li><li>Platform as a service, not serverless</li></ul>"},
+{d:"svc",f:"CodeBuild vs. CodePipeline?",b:"<b>CodeBuild compiles and tests. CodePipeline orchestrates the whole CI/CD flow.</b><ul><li>Pipeline is the conveyor belt; Build is one station on it</li></ul>"},
+{d:"svc",f:"Infrastructure as code on AWS?",b:"<b>AWS CloudFormation.</b><ul><li>JSON or YAML templates create repeatable stacks</li><li>Systems Manager operates existing resources; Config records them</li></ul>"},
+{d:"svc",f:"AWS Systems Manager — what does it cover?",b:"<b>Operate and manage a fleet: patching, run commands, configuration.</b><ul><li>Parameter Store holds configuration data and secrets references</li><li>Session Manager gives shell access without SSH or open ports</li></ul>"},
+
+/* ---------------- IN-SCOPE SERVICES: OTHER ---------------- */
+{d:"svc",f:"AppStream 2.0 vs. WorkSpaces vs. WorkSpaces Secure Browser?",b:"<ul><li><b>AppStream 2.0</b> — stream a single <b>application</b> to a browser</li><li><b>WorkSpaces</b> — a full virtual <b>desktop</b></li><li><b>Secure Browser</b> — managed browser for internal web apps</li></ul>"},
+{d:"svc",f:"Amazon Connect and Amazon SES — the two in-scope business apps?",b:"<b>Connect = cloud contact center. SES = bulk and transactional email.</b><ul><li>Connect integrates with Lex and Polly for automated responses</li></ul>"},
+{d:"svc",f:"SQS vs. SNS vs. EventBridge vs. Step Functions?",b:"<ul><li><b>SQS</b> — buffer, one consumer per message</li><li><b>SNS</b> — fan out one message to many subscribers</li><li><b>EventBridge</b> — route events by rule</li><li><b>Step Functions</b> — sequence steps with state</li></ul>"},
+{d:"svc",f:"AWS IoT Core — one line?",b:"<b>Connect and manage IoT devices at scale, securely.</b><ul><li>Devices publish and subscribe to messages</li></ul>"},
+{d:"svc",f:"AWS Amplify — one line?",b:"<b>Build and host web and mobile front ends with backend services.</b><ul><li>Not a macOS build environment for native iOS</li></ul>"},
+{d:"svc",f:"AWS License Manager — one line?",b:"<b>Track and enforce software licenses you bring to AWS.</b><ul><li>Pairs with Dedicated Hosts for per-socket or per-core licensing</li></ul>"},
+
+/* ---------------- TD COMMON EXAM SCENARIOS ---------------- */
+{d:"td",f:"BYOL needing visibility into physical sockets and cores?",b:"<b>Dedicated Hosts.</b><ul><li>Only option exposing socket and core detail</li><li>Dedicated <i>Instances</i> = isolated hardware but no socket visibility</li></ul>"},
+{d:"td",f:"Interruptible, fault-tolerant workload — cheapest option and discount?",b:"<b>Spot Instances, up to 90% off On-Demand.</b><ul><li>Interruptible is the trigger word</li><li>If it cannot be interrupted, Spot is instantly wrong</li></ul>"},
+{d:"td",f:"Reserved Instance that can change instance family mid-term?",b:"<b>Convertible RI.</b><ul><li>Standard RI: deeper discount, cannot change family</li><li>Convertible: smaller discount, can change family, OS, or tenancy</li></ul>"},
+{d:"td",f:"Which RI payment option gives the lowest total cost?",b:"<b>All Upfront.</b><ul><li>All Upfront &gt; Partial Upfront &gt; No Upfront on savings</li></ul>"},
+{d:"td",f:"Require an extra authentication factor before deleting S3 objects?",b:"<b>MFA Delete</b> on a versioned bucket.<ul><li>Requires an MFA code to permanently delete a version</li><li>Block Public Access prevents exposure, not deletion</li></ul>"},
+{d:"td",f:"Which pillar stresses selecting the right number and type of resources?",b:"<b>Performance Efficiency.</b><ul><li>Sounds like cost, but the pillar is about fit and efficiency</li></ul>"},
+{d:"td",f:"Requirement: launch a database where the customer manages the guest OS.",b:"<b>A database on Amazon EC2</b>, not RDS.<ul><li>RDS is managed — AWS patches the OS</li><li>Guest OS responsibility means you run it yourself on EC2</li></ul>"},
+{d:"td",f:"Minimum AZs for a highly available Application Load Balancer?",b:"<b>Two.</b><ul><li>An ALB requires subnets in at least two Availability Zones</li></ul>"},
+{d:"td",f:"Connect many VPCs and on-premises networks through one central hub?",b:"<b>AWS Transit Gateway.</b><ul><li>Replaces a mesh of individual peering connections</li></ul>"},
+{d:"td",f:"Private connection between two VPCs with no extra software?",b:"<b>VPC Peering.</b><ul><li>Works across accounts and Regions</li><li>Not transitive — that is what Transit Gateway solves</li></ul>"},
+{d:"td",f:"Decouple components so messages are never lost even if a service is down?",b:"<b>Amazon SQS.</b><ul><li>Send, store, receive at any volume</li><li>No other service needs to be available at send time</li></ul>"},
+{d:"td",f:"Which ELB type can target a Lambda function?",b:"<b>Application Load Balancer.</b><ul><li>ALB operates at layer 7 and supports Lambda targets</li><li>NLB is layer 4; GWLB is for appliances</li></ul>"},
+{d:"td",f:"Long-term programmatic access with SSH keys as a credential type?",b:"<b>An IAM user.</b><ul><li>Users hold long-term credentials: passwords, access keys, SSH keys for CodeCommit</li><li>Roles are temporary and store no credentials</li></ul>"},
+{d:"td",f:"Evaluate cloud readiness and prioritize business transformation before migrating?",b:"<b>AWS Cloud Adoption Framework (CAF).</b><ul><li>Created by AWS Professional Services</li><li>Migration Evaluator prices it; CAF plans the transformation</li></ul>"},
+{d:"td",f:"Which phase of the cloud journey expands pilots to the desired scale?",b:"<b>Scale.</b><ul><li>Journey phases: <b>Envision → Align → Launch → Scale</b></li></ul>"},
+{d:"td",f:"AWS Professional Services vs. APN Consulting Partners vs. AWS IQ?",b:"<ul><li><b>Professional Services</b> — AWS's own consulting arm, authored the CAF</li><li><b>Consulting Partners</b> — third-party SIs and MSPs</li><li><b>AWS IQ</b> — independent freelancers <i>(out of scope)</i></li></ul>"},
+{d:"td",f:"Set up directories in AWS or connect to on-premises Active Directory?",b:"<b>AWS Directory Service.</b><ul><li>AWS Managed Microsoft AD, AD Connector, Simple AD</li></ul>"},
+{d:"td",f:"Where do you request a service limit increase on Basic Support?",b:"<b>Service Quotas</b>, or the Support Center.<ul><li>Basic Support includes service limit increase requests</li><li>Trusted Advisor also warns as you approach limits</li></ul>"},
+{d:"td",f:"Turn text into lifelike speech for speech-enabled products?",b:"<b>Amazon Polly.</b><ul><li>The phrase applications that talk is TD's exact wording</li></ul>"},
+{d:"td",f:"Best description of Amazon Redshift?",b:"<b>A fully managed petabyte-scale data warehouse.</b><ul><li>Columnar storage, for analytical queries and BI</li><li>Redshift Spectrum queries S3 without loading</li></ul>"},
+{d:"td",f:"Provision Windows or Linux desktops in minutes for thousands of workers?",b:"<b>Amazon WorkSpaces.</b><ul><li>Integrates with AWS License Manager for license tracking</li></ul>"},
+{d:"td",f:"Cheapest storage for database backups retrievable in minutes?",b:"<b>S3 Glacier Flexible Retrieval.</b><ul><li>Minutes to hours; use lifecycle policies to move backups there</li><li>Deep Archive is cheaper but takes hours</li></ul>"}
 ];
 
-const KEY='clfc02_cards_sample';
+const DECKS=[
+ {k:"miss",n:"Your missed questions"},
+ {k:"storage",n:"Storage selection"},
+ {k:"net",n:"Networking & traffic"},
+ {k:"cost",n:"Monitoring & cost"},
+ {k:"sec",n:"Security"},
+ {k:"concept",n:"Cloud concepts"},
+ {k:"wa",n:"Well-Architected"},
+ {k:"svc",n:"In-scope services"},
+ {k:"td",n:"TD exam scenarios"}
+];
+const DNAME={};DECKS.forEach(d=>DNAME[d.k]=d.n);
+
+/* ============================ STORAGE ============================ */
+const KEY='clfc02_cards_v2';
 const store={
   async get(){try{if(window.storage){const r=await window.storage.get(KEY);return r?JSON.parse(r.value):null}}catch(e){}
     try{const v=localStorage.getItem(KEY);return v?JSON.parse(v):null}catch(e){}return null},
@@ -146,47 +330,71 @@ const store={
     try{localStorage.removeItem(KEY)}catch(e){}}
 };
 
-let queue=[], flipped=false, done=0, reps=0;
+/* ============================ STATE ============================ */
+let view='home';            /* home | study | browse | done */
+let sel={};                 /* deck key -> bool */
+let queue=[];               /* [{i,box}] */
+let learned={};             /* card index -> true */
+let hist=[];                /* undo snapshots */
+let flipped=false, reps=0, openCard=null;
 const app=document.getElementById('app');
 
-function start(saved){
-  if(saved && saved.queue && saved.queue.length){
-    queue=saved.queue; done=saved.done||0; reps=saved.reps||0;
-  } else {
-    queue=CARDS.map((_,i)=>({i,box:0}));
-    done=0; reps=0;
-  }
-  flipped=false; draw();
-}
-function save(){store.set({queue,done,reps});}
+function save(){store.set({sel,queue,learned,reps});}
+function total(){return queue.length+Object.keys(learned).length;}
 
-/* Again → back in 3 cards. Good → back in 9, or retired at box 2+.
-   Easy → retired immediately. */
-function rate(kind){
-  const c=queue.shift(); reps++;
-  if(kind==='again'){ c.box=0; queue.splice(Math.min(3,queue.length),0,c); }
-  else if(kind==='good'){
-    c.box++;
-    if(c.box>=2){ done++; } else { queue.splice(Math.min(9,queue.length),0,c); }
-  } else { done++; }
-  flipped=false; save(); draw();
+function buildQueue(){
+  const keys=Object.keys(sel).filter(k=>sel[k]);
+  queue=C.map((c,i)=>({c,i})).filter(x=>keys.includes(x.c.d)).map(x=>({i:x.i,box:0}));
+  for(let i=queue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[queue[i],queue[j]]=[queue[j],queue[i]];}
+  learned={};hist=[];reps=0;flipped=false;
 }
 
-function draw(){
-  if(!queue.length) return drawDone();
-  const c=queue[0], card=CARDS[c.i];
-  const total=CARDS.length;
+/* ============================ RENDER ============================ */
+function render(){
+  if(view==='home')return home();
+  if(view==='browse')return browse();
+  if(view==='done'||!queue.length)return done();
+  study();
+}
+
+function home(){
+  const any=Object.keys(sel).some(k=>sel[k]);
+  const resume=queue.length>0;
+  app.innerHTML=`
+  <div class="top" style="padding-bottom:4px">
+    <div style="flex:1"><div style="font-size:21px;font-weight:700">CLF-C02 Cards</div>
+      <div style="font-size:13px;color:var(--mut)">${C.length} cards</div></div>
+  </div>
+  <div class="scroll">
+    ${resume?`<button class="go" onclick="view='study';render()">Resume — ${queue.length} left</button>`:''}
+    <div class="panel">
+      <h2>Pick your decks</h2>
+      <p>Tap to include. Starting a new session reshuffles and resets progress for the decks you choose.</p>
+      ${DECKS.map(d=>{const n=C.filter(c=>c.d===d.k).length;
+        return `<div class="deckrow" onclick="tog('${d.k}')">
+          <div class="nm">${d.n}</div><div class="ct">${n}</div>
+          <div class="sw ${sel[d.k]?'on':''}"><i></i></div></div>`}).join('')}
+    </div>
+    <button class="go" ${any?'':'disabled style="opacity:.4"'} onclick="${any?"startNew()":''}">
+      Start new session</button>
+    <button class="ghost" onclick="view='browse';render()">Browse all cards</button>
+  </div>`;
+}
+function tog(k){sel[k]=!sel[k];save();home();}
+function startNew(){buildQueue();view='study';save();render();}
+
+function study(){
+  const c=queue[0], card=C[c.i], t=total(), l=Object.keys(learned).length;
   app.innerHTML=`
   <div class="top">
-    <span class="title">CLF-C02 Cards</span>
-    <span class="counts"><b>${done}</b>/${total} learned &middot; ${queue.length} in queue</span>
+    <button class="icon" onclick="undo()" ${hist.length?'':'disabled'} aria-label="Undo">&#8592;</button>
+    <div class="counts"><b>${l} / ${t} learned</b>${queue.length} in queue &middot; ${reps} reviews</div>
+    <button class="icon" onclick="openCard=null;view='browse';render()" aria-label="Browse">&#9776;</button>
   </div>
-  <div class="track"><i style="width:${(done/total*100).toFixed(0)}%"></i></div>
-  <div class="note"><b>Sample deck — 12 cards.</b> Rate honestly; "Again" brings a card back within a few
-  cards, "Good" twice retires it, "Easy" retires it now. Progress saves automatically.</div>
+  <div class="track"><i style="width:${t?(l/t*100).toFixed(0):0}%"></i></div>
   <main>
-    <div class="card" onclick="${flipped?'':'flip()'}">
-      <span class="tag">${card.t}</span>
+    <div class="card" ${flipped?'':'onclick="flip()"'}>
+      <span class="tag">${DNAME[card.d]}</span>
       <div class="front">${card.f}</div>
       ${flipped?`<div class="divider"></div><div class="back">${card.b}</div>`
                 :`<div class="hint">Tap to reveal</div>`}
@@ -194,24 +402,85 @@ function draw(){
   </main>
   ${flipped?`
   <div class="actions">
-    <button class="b-again" onclick="rate('again')">Again<span class="sub">didn't know it</span></button>
+    <button class="b-again" onclick="rate('again')">Again<span class="sub">no idea</span></button>
     <button class="b-good" onclick="rate('good')">Good<span class="sub">got there</span></button>
     <button class="b-easy" onclick="rate('easy')">Easy<span class="sub">instant</span></button>
   </div>`:`
   <div class="reveal"><button onclick="flip()">Show answer</button></div>`}`;
 }
-function flip(){flipped=true;draw();}
+function flip(){flipped=true;render();}
 
-function drawDone(){
+function snap(){hist.push({q:JSON.parse(JSON.stringify(queue)),l:Object.assign({},learned),r:reps});
+  if(hist.length>60)hist.shift();}
+
+function rate(kind){
+  snap();
+  const c=queue.shift();reps++;
+  if(kind==='again'){c.box=0;queue.splice(Math.min(3,queue.length),0,c);}
+  else if(kind==='good'){c.box++;
+    if(c.box>=2)learned[c.i]=true; else queue.splice(Math.min(9,queue.length),0,c);}
+  else learned[c.i]=true;
+  flipped=false;save();
+  if(!queue.length)view='done';
+  render();
+}
+function undo(){
+  if(!hist.length)return;
+  const s=hist.pop();
+  queue=s.q;learned=s.l;reps=s.r;flipped=true;view='study';save();render();
+}
+
+function browse(){
+  const keys=Object.keys(sel).some(k=>sel[k])?Object.keys(sel).filter(k=>sel[k]):DECKS.map(d=>d.k);
+  const qidx={};queue.forEach((q,n)=>qidx[q.i]=n);
+  let html='';
+  DECKS.filter(d=>keys.includes(d.k)).forEach(d=>{
+    const items=C.map((c,i)=>({c,i})).filter(x=>x.c.d===d.k);
+    if(!items.length)return;
+    html+=`<div class="sec">${d.n} &middot; ${items.length}</div>`;
+    items.forEach(({c,i})=>{
+      const st=learned[i]?'learned':(qidx[i]!==undefined?'position '+(qidx[i]+1):'');
+      const open=openCard===i;
+      html+=`<div class="bitem" onclick="openCard=${open?'null':i};render()">
+        <div class="bt">${DNAME[c.d]}<span class="state">${st}</span></div>
+        <div class="bf">${c.f}</div>
+        ${open?`<div class="bb">${c.b}</div>
+          ${qidx[i]!==undefined?`<div class="jump" onclick="event.stopPropagation();jump(${i})">Study this card next &rarr;</div>`:''}`:''}
+      </div>`;
+    });
+  });
+  app.innerHTML=`
+  <div class="top">
+    <button class="icon" onclick="view=queue.length?'study':'home';render()" aria-label="Back">&#8592;</button>
+    <div class="counts"><b>Browse</b>tap a card to see the answer</div>
+    <button class="icon" onclick="view='home';render()" aria-label="Home">&#9873;</button>
+  </div>
+  <div class="scroll">${html||'<div class="panel"><p>No cards in the selected decks.</p></div>'}</div>`;
+}
+function jump(i){
+  const n=queue.findIndex(q=>q.i===i);
+  if(n<0)return;
+  snap();
+  const c=queue.splice(n,1)[0];queue.unshift(c);
+  flipped=false;openCard=null;view='study';save();render();
+}
+
+function done(){
+  const l=Object.keys(learned).length;
   app.innerHTML=`<div class="done">
-    <h2>Deck complete</h2>
-    <p>${CARDS.length} cards learned in ${reps} reviews.</p>
-    <button onclick="restart()">Start over</button>
+    <h2>Session complete</h2>
+    <p>${l} cards learned in ${reps} reviews.</p>
+    <button onclick="view='home';render()">Choose decks</button>
+    <button onclick="startNew()">Repeat this set</button>
   </div>`;
 }
-async function restart(){await store.clear();start(null);}
 
-(async()=>{start(await store.get())})();
+(async()=>{
+  const s=await store.get();
+  if(s){sel=s.sel||{};queue=s.queue||[];learned=s.learned||{};reps=s.reps||0;}
+  if(!Object.keys(sel).length)DECKS.forEach(d=>sel[d.k]=true);
+  view='home';render();
+})();
 </script>
 </body>
 </html>
