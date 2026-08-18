@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>CLF-C02 Cards — Sample</title>
+<style>
+:root{--ink:#15181d;--mut:#6b7480;--rule:#dbe0e6;--bg:#f2f4f7;--card:#fff;--acc:#1f5fa8;
+      --again:#b03030;--good:#1f5fa8;--easy:#1a7a45;--tag:#eef2f7;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
+     background:var(--bg);color:var(--ink);display:flex;flex-direction:column;
+     -webkit-font-smoothing:antialiased;overscroll-behavior:none}
+button{font:inherit;border:0;cursor:pointer;border-radius:14px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;
+     padding:calc(env(safe-area-inset-top) + 12px) 16px 10px;flex:none}
+.title{font-size:15px;font-weight:700}
+.counts{font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+.counts b{color:var(--ink)}
+.track{height:5px;background:var(--rule);margin:0 16px;border-radius:3px;overflow:hidden;flex:none}
+.track i{display:block;height:100%;background:var(--acc);width:0;transition:width .25s}
+main{flex:1;display:flex;flex-direction:column;padding:14px 16px;min-height:0}
+.card{flex:1;background:var(--card);border-radius:22px;box-shadow:0 2px 14px rgba(20,30,50,.09);
+      padding:26px 24px;display:flex;flex-direction:column;min-height:0;overflow-y:auto;
+      -webkit-overflow-scrolling:touch}
+.tag{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.06em;
+     text-transform:uppercase;color:var(--acc);background:var(--tag);padding:5px 11px;border-radius:99px;
+     margin-bottom:18px;flex:none}
+.front{font-size:26px;font-weight:650;line-height:1.32}
+.divider{height:1px;background:var(--rule);margin:22px 0 20px;flex:none}
+.back{font-size:19px;line-height:1.5}
+.back b{font-weight:700}
+.back ul{margin:10px 0 0;padding-left:20px}
+.back li{margin:7px 0}
+.hint{margin-top:auto;padding-top:22px;text-align:center;color:var(--mut);font-size:15px;flex:none}
+.actions{flex:none;padding:12px 16px calc(env(safe-area-inset-bottom) + 16px);display:flex;gap:10px}
+.actions button{flex:1;padding:19px 8px;font-size:17px;font-weight:650;color:#fff;line-height:1.15}
+.actions .sub{display:block;font-size:11px;font-weight:500;opacity:.82;margin-top:3px}
+.b-again{background:var(--again)}.b-good{background:var(--good)}.b-easy{background:var(--easy)}
+.reveal{flex:none;padding:12px 16px calc(env(safe-area-inset-bottom) + 16px)}
+.reveal button{width:100%;padding:19px;font-size:18px;font-weight:650;background:var(--ink);color:#fff}
+.done{text-align:center;padding:44px 26px}
+.done h2{font-size:26px;margin:0 0 8px}
+.done p{color:var(--mut);font-size:16px;margin:0 0 26px}
+.done button{background:var(--acc);color:#fff;padding:17px 30px;font-size:17px;font-weight:650}
+.note{background:#fff;border-radius:14px;padding:14px 16px;margin:0 16px 14px;font-size:13.5px;
+      color:var(--mut);line-height:1.45}
+.note b{color:var(--ink)}
+
+/* ---- iPhone and small screens ---- */
+@media (max-width:430px){
+  .top{padding:calc(env(safe-area-inset-top) + 10px) 13px 8px}
+  .title{font-size:14px}
+  .counts{font-size:12.5px}
+  .track{margin:0 13px}
+  .note{margin:0 13px 11px;padding:11px 13px;font-size:12.5px}
+  main{padding:11px 13px}
+  .card{padding:20px 18px;border-radius:18px}
+  .front{font-size:21px}
+  .back{font-size:16.5px}
+  .back li{margin:6px 0}
+  .divider{margin:17px 0 15px}
+  .tag{font-size:10px;margin-bottom:14px;padding:4px 9px}
+  .actions{gap:7px;padding:10px 13px calc(env(safe-area-inset-bottom) + 12px)}
+  .actions button{padding:15px 4px;font-size:15px;border-radius:12px}
+  .actions .sub{font-size:9.5px;margin-top:2px}
+  .reveal{padding:10px 13px calc(env(safe-area-inset-bottom) + 12px)}
+  .reveal button{padding:16px;font-size:16.5px;border-radius:12px}
+  .hint{font-size:14px;padding-top:16px}
+}
+/* ---- very small phones (SE) ---- */
+@media (max-width:360px){
+  .front{font-size:19px}
+  .back{font-size:15.5px}
+  .actions button{font-size:14px}
+  .actions .sub{display:none}
+}
+/* ---- phone in landscape: reclaim vertical space ---- */
+@media (max-height:500px) and (orientation:landscape){
+  .note{display:none}
+  .card{padding:16px 20px}
+  .front{font-size:19px}
+  .back{font-size:15.5px}
+  .divider{margin:13px 0 12px}
+  .tag{margin-bottom:10px}
+  .actions button{padding:12px 4px}
+  .reveal button{padding:13px}
+  .hint{padding-top:12px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ---------- 12 sample cards, one from each planned source ---------- */
+const CARDS=[
+{t:"Missed · Test 2",f:"Instance is <b>stopped</b>. What are you billed for?",
+ b:"<b>The EBS volumes only.</b><ul><li>No compute charge — the server is off</li><li>The disk still exists, so it still bills</li><li>An idle <b>Elastic IP</b> also bills</li></ul>"},
+
+{t:"Missed · Both tests",f:"Which is <b>not</b> a valid security group source?",
+ b:"<b>A hostname or an instance ID.</b><ul><li>Valid: IP, CIDR range, security group ID, prefix list</li><li>Inbound takes a <b>source</b>; outbound takes a <b>destination</b></li><li>Allow-only — no deny rules</li></ul>"},
+
+{t:"Cheat sheet · Storage",f:"Many Linux servers need one shared file system. Which service?",
+ b:"<b>Amazon EFS.</b><ul><li>NFS, thousands of concurrent clients</li><li><b>Windows or SMB → FSx</b> instead</li><li>One server only → EBS</li><li>Temporary and fastest → Instance Store</li></ul>"},
+
+{t:"Cheat sheet · Monitoring",f:"CloudTrail vs. Config — what does each answer?",
+ b:"<b>CloudTrail = who did it. Config = what it looks like.</b><ul><li>Who made the bucket public, and from what IP → <b>CloudTrail</b></li><li>Which buckets are public, and were they compliant last Tuesday → <b>Config</b></li></ul>"},
+
+{t:"In scope · ML",f:"Pull text and data out of scanned invoices. Which service?",
+ b:"<b>Amazon Textract.</b><ul><li>Textract → extract text <i>from documents</i></li><li>Comprehend → find <i>meaning</i> in text you already have</li><li>Rekognition → images and video</li></ul>"},
+
+{t:"In scope · ML",f:"Polly vs. Transcribe — which direction is which?",
+ b:"<b>Polly Produces speech. Transcribe writes down speech.</b><ul><li>Polly: text → audio</li><li>Transcribe: audio → text</li><li>Call recordings → Transcribe</li></ul>"},
+
+{t:"In scope · Migration",f:"Which two services travel together migrating Oracle → Aurora?",
+ b:"<b>Schema Conversion Tool (SCT) + Database Migration Service (DMS).</b><ul><li>SCT converts the schema when the <b>engine changes</b></li><li>DMS moves the data, source stays live</li><li>Same engine? DMS alone</li></ul>"},
+
+{t:"In scope · Analytics",f:"Name the analytics pipeline in order.",
+ b:"<b>Kinesis → Glue → S3 → Athena/Redshift → QuickSight.</b><ul><li>Kinesis ingests streaming data</li><li>Glue transforms (ETL)</li><li>Athena queries S3 in place</li><li>QuickSight visualizes</li></ul>"},
+
+{t:"TD scenarios",f:"BYOL with visibility into physical sockets and cores. Which purchasing option?",
+ b:"<b>Dedicated Hosts.</b><ul><li>Only option exposing socket and core detail for per-socket licensing</li><li>Dedicated <i>Instances</i> = isolated hardware, but no socket visibility</li></ul>"},
+
+{t:"TD scenarios",f:"Interruptible, fault-tolerant batch job. Cheapest option and how much off?",
+ b:"<b>Spot Instances — up to 90% off On-Demand.</b><ul><li>Interruptible is the trigger word</li><li>If it <i>cannot</i> be interrupted, Spot is instantly wrong</li></ul>"},
+
+{t:"Well-Architected",f:"The 6 general design principles — mnemonic?",
+ b:"<b>STAGED</b><ul><li><b>S</b>top guessing capacity</li><li><b>T</b>est at production scale</li><li><b>A</b>utomate with experimentation in mind</li><li><b>G</b>ame days</li><li><b>E</b>volutionary architectures</li><li><b>D</b>rive using data</li></ul>"},
+
+{t:"Well-Architected",f:"\"Stop guessing capacity\" is a design principle of which <b>pillar</b>?",
+ b:"<b>Reliability.</b><ul><li>Cost Optimization is the usual distractor — wrong</li><li>It also appears in the 6 general principles, which is why it feels ambiguous</li></ul>"}
+];
+
+const KEY='clfc02_cards_sample';
+const store={
+  async get(){try{if(window.storage){const r=await window.storage.get(KEY);return r?JSON.parse(r.value):null}}catch(e){}
+    try{const v=localStorage.getItem(KEY);return v?JSON.parse(v):null}catch(e){}return null},
+  async set(o){const s=JSON.stringify(o);
+    try{if(window.storage){await window.storage.set(KEY,s);return}}catch(e){}
+    try{localStorage.setItem(KEY,s)}catch(e){}},
+  async clear(){try{if(window.storage){await window.storage.delete(KEY);return}}catch(e){}
+    try{localStorage.removeItem(KEY)}catch(e){}}
+};
+
+let queue=[], flipped=false, done=0, reps=0;
+const app=document.getElementById('app');
+
+function start(saved){
+  if(saved && saved.queue && saved.queue.length){
+    queue=saved.queue; done=saved.done||0; reps=saved.reps||0;
+  } else {
+    queue=CARDS.map((_,i)=>({i,box:0}));
+    done=0; reps=0;
+  }
+  flipped=false; draw();
+}
+function save(){store.set({queue,done,reps});}
+
+/* Again → back in 3 cards. Good → back in 9, or retired at box 2+.
+   Easy → retired immediately. */
+function rate(kind){
+  const c=queue.shift(); reps++;
+  if(kind==='again'){ c.box=0; queue.splice(Math.min(3,queue.length),0,c); }
+  else if(kind==='good'){
+    c.box++;
+    if(c.box>=2){ done++; } else { queue.splice(Math.min(9,queue.length),0,c); }
+  } else { done++; }
+  flipped=false; save(); draw();
+}
+
+function draw(){
+  if(!queue.length) return drawDone();
+  const c=queue[0], card=CARDS[c.i];
+  const total=CARDS.length;
+  app.innerHTML=`
+  <div class="top">
+    <span class="title">CLF-C02 Cards</span>
+    <span class="counts"><b>${done}</b>/${total} learned &middot; ${queue.length} in queue</span>
+  </div>
+  <div class="track"><i style="width:${(done/total*100).toFixed(0)}%"></i></div>
+  <div class="note"><b>Sample deck — 12 cards.</b> Rate honestly; "Again" brings a card back within a few
+  cards, "Good" twice retires it, "Easy" retires it now. Progress saves automatically.</div>
+  <main>
+    <div class="card" onclick="${flipped?'':'flip()'}">
+      <span class="tag">${card.t}</span>
+      <div class="front">${card.f}</div>
+      ${flipped?`<div class="divider"></div><div class="back">${card.b}</div>`
+                :`<div class="hint">Tap to reveal</div>`}
+    </div>
+  </main>
+  ${flipped?`
+  <div class="actions">
+    <button class="b-again" onclick="rate('again')">Again<span class="sub">didn't know it</span></button>
+    <button class="b-good" onclick="rate('good')">Good<span class="sub">got there</span></button>
+    <button class="b-easy" onclick="rate('easy')">Easy<span class="sub">instant</span></button>
+  </div>`:`
+  <div class="reveal"><button onclick="flip()">Show answer</button></div>`}`;
+}
+function flip(){flipped=true;draw();}
+
+function drawDone(){
+  app.innerHTML=`<div class="done">
+    <h2>Deck complete</h2>
+    <p>${CARDS.length} cards learned in ${reps} reviews.</p>
+    <button onclick="restart()">Start over</button>
+  </div>`;
+}
+async function restart(){await store.clear();start(null);}
+
+(async()=>{start(await store.get())})();
+</script>
+</body>
+</html>
