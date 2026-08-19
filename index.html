@@ -45,7 +45,9 @@ main{flex:1;display:flex;flex-direction:column;padding:10px 16px;min-height:0}
       background:rgba(91,156,248,.13);padding:4px 10px;border-radius:99px}
 .chip.g{color:var(--mut);background:var(--panel2)}
 .chip.w{color:var(--warn);background:rgba(245,196,81,.13)}
-.mid{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.mid{flex:1;display:flex;flex-direction:column;justify-content:flex-start;min-height:0}
+.mid.ctr{justify-content:center}
+@supports (justify-content: safe center){.mid.ctr{justify-content:safe center}}
 .front{font-size:26px;font-weight:600;line-height:1.34;text-align:center}
 .front.sm{font-size:21px}
 .hint{text-align:center;color:#6b7382;font-size:14px;margin-top:22px;flex:none}
@@ -481,7 +483,16 @@ const app=document.getElementById('app');
 
 function build(){
  LIVE=C.map((c,n)=>Object.assign({},c,{id:'b'+n})).concat(extra)
-   .filter(c=>!del[c.id]).map(c=>ed[c.id]?Object.assign({},c,ed[c.id],{edited:true}):c);
+   .filter(c=>!del[c.id]).map(c=>ed[c.id]?Object.assign({},c,ed[c.id],{edited:true}):c)
+   .map(c=>{
+     if(!c.o||!c.o.length)return c;
+     /* "*" is authoring shorthand for the correct option. Strip it before display,
+        and derive k from it if k was not supplied. */
+     const starred=c.o.map((o,i)=>String(o).charAt(0)==='*'?i:-1).filter(i=>i>=0);
+     const clean=c.o.map(o=>String(o).replace(/^\*\s*/,''));
+     const k=(c.k&&c.k.length)?c.k:starred;
+     return Object.assign({},c,{o:clean,k:k});
+   });
  BYID={};LIVE.forEach(c=>BYID[c.id]=c);
 }
 function cur(){return BYID[order[idx]]}
@@ -568,6 +579,7 @@ function study(){
    <button class="ib" onclick="view='home';save();render()">&#9664;</button>
    <div class="ttl">${DN[c.d]}</div>
    <button class="ib ${flags[c.id]?'on':''}" onclick="flag()">${flags[c.id]?'&#9733;':'&#9734;'}</button>
+   <button class="ib" onclick="go(true)" aria-label="Shuffle">&#8646;</button>
    <button class="ib" onclick="editCard('${c.id}')">&#9998;</button>
    <button class="ib" onclick="openC=null;view='browse';render()">&#9776;</button>
    <button class="ib" onclick="view='summary';render()">&#9673;</button>
@@ -582,8 +594,8 @@ function study(){
      ${flags[c.id]?'<span class="chip w">flagged</span>':''}
      <span class="chip g">deck ${deck.findIndex(x=>x.id===c.id)+1} of ${deck.length}</span>
    </div>
-   <div class="mid">
-     <div class="front ${c.f.length>115?'sm':''}">${fmt(c.f)}</div>
+   <div class="mid${(!hasMC&&!flipped&&c.f.length<150)?' ctr':''}">
+     <div class="front ${c.f.length>115?'sm':''}" ${hasMC?'style="text-align:left"':''}>${fmt(c.f)}</div>
      ${hasMC?`<div class="mcq">${need>1?`<div class="pick2">Choose ${need} — judge each option on its own</div>`:''}
       ${c.o.map((o,n)=>{let cl='mco';
         if(flipped){if(c.k.indexOf(n)>=0)cl='mco ok';else if(p.indexOf(n)>=0)cl='mco no'}
@@ -594,7 +606,6 @@ function study(){
      ${flipped?`<div class="rule"></div>${vd}<div class="back">${fmt(c.b)}</div>`
        :(hasMC?'':`<div class="hint">Tap to reveal</div>`)}
    </div>
-   <div class="shuf" onclick="event.stopPropagation();go(true)">&#8646;</div>
   </div>
  </main>
  <div class="foot">
