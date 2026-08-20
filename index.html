@@ -117,6 +117,13 @@ main{flex:1;display:flex;flex-direction:column;padding:10px 16px;min-height:0}
 .st{float:right;font-size:10px;color:var(--mut);font-weight:600}
 .sec{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);
      margin:20px 0 9px;padding-left:3px}
+.fbar{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 16px 10px;
+      flex:none;background:var(--bg);border-bottom:1px solid var(--rule);scrollbar-width:none}
+.fbar::-webkit-scrollbar{display:none}
+.fchip{flex:none;font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:99px;
+       background:var(--panel);color:var(--mut);white-space:nowrap;border:1px solid transparent}
+.fchip.on{background:rgba(91,156,248,.16);color:var(--acc);border-color:var(--acc)}
+.fchip .n{opacity:.6;font-weight:500;margin-left:5px}
 .ed label{display:block;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
           color:var(--mut);margin:0 0 6px}
 .ed textarea,.ed select{width:100%;border:1px solid var(--rule);border-radius:13px;padding:12px;font:inherit;
@@ -490,7 +497,7 @@ const store={
 };
 let view='home',sel={},order=[],idx=0,flipped=false,picked={},flags={},rated={},
     track=true,ed={},del={},extra=[],LIVE=[],BYID={},openC=null,editId=null,editNew=false,
-    seen={},reps=0,started=null;
+    seen={},reps=0,started=null,bFilter='all',bScroll=0;
 const app=document.getElementById('app');
 
 function build(){
@@ -531,6 +538,8 @@ function buildOrder(shuffle){
 
 /* =================== RENDER =================== */
 function render(){
+ const _sc=document.getElementById('bscroll');
+ if(_sc)bScroll=_sc.scrollTop;
  order=order.filter(id=>BYID[id]);
  if(idx>=order.length)idx=Math.max(0,order.length-1);
  if(view==='edit')return editor();
@@ -562,7 +571,7 @@ function home(){
    <button class="big" ${any?'':'disabled'} onclick="${any?'go(true)':''}">Start shuffled</button>
    <div style="height:10px"></div>
    <button class="ghost" ${any?'':'disabled'} onclick="${any?'go(false)':''}">Start in order</button>
-   <button class="ghost" onclick="openC=null;view='browse';render()">Browse &amp; edit</button>
+   <button class="ghost" onclick="openBrowse()">Browse &amp; edit</button>
    <button class="ghost" onclick="view='gloss';render()">Acronym glossary</button>
    <button class="ghost" onclick="newCard()">+ New card</button>
    <button class="ghost" onclick="view='backup';render()">Back up my edits</button>
@@ -593,7 +602,7 @@ function study(){
    <button class="ib ${flags[c.id]?'on':''}" onclick="flag()">${flags[c.id]?'&#9733;':'&#9734;'}</button>
    <button class="ib" onclick="go(true)" aria-label="Shuffle">&#8646;</button>
    <button class="ib" onclick="editCard('${c.id}')">&#9998;</button>
-   <button class="ib" onclick="openC=null;view='browse';render()">&#9776;</button>
+   <button class="ib" onclick="openBrowse()">&#9776;</button>
    <button class="ib" onclick="view='summary';render()">&#9673;</button>
  </div>
  <div class="segs"><div class="sw">${segs}</div><div class="segn">${idx+1} / ${order.length}</div></div>
@@ -702,12 +711,16 @@ function redo(){
 
 function browse(){
  const ks=Object.keys(sel).some(k=>sel[k])?Object.keys(sel).filter(k=>sel[k]):DECKS.map(d=>d.k);
+ const avail=DECKS.filter(d=>ks.indexOf(d.k)>=0).filter(d=>LIVE.some(c=>c.d===d.k));
+ if(bFilter!=='all'&&!avail.some(d=>d.k===bFilter))bFilter='all';
+ const shown=bFilter==='all'?avail:avail.filter(d=>d.k===bFilter);
+ const totalN=avail.reduce((n,d)=>n+LIVE.filter(c=>c.d===d.k).length,0);
  let h='';
- DECKS.filter(d=>ks.indexOf(d.k)>=0).forEach(d=>{
+ shown.forEach(d=>{
   const it=LIVE.filter(c=>c.d===d.k);if(!it.length)return;
   h+=`<div class="sec">${d.n} &middot; ${it.length}</div>`;
   it.forEach(c=>{const op=openC===c.id,pos=order.indexOf(c.id);
-   h+=`<div class="item" onclick="openC=${op?'null':"'"+c.id+"'"};render()">
+   h+=`<div class="item" onclick="tapItem('${c.id}')">
     <div class="t">${DN[c.d]}${c.edited?' &middot; edited':''}<span class="st">${flags[c.id]?'&#9733; ':''}${rated[c.id]?rated[c.id]:(pos>=0?'#'+(pos+1):'')}</span></div>
     <div class="f">${fmt(c.f)}</div>
     ${op?`${c.o?'<div class="b">'+c.o.map((o,n)=>'<div style="margin:4px 0">'+((c.k||[]).indexOf(n)>=0?'<b>&#10003; '+esc(o)+'</b>':'&#9675; '+esc(o))+'</div>').join('')+'</div>':''}
@@ -720,8 +733,19 @@ function browse(){
   <div class="ttl">Browse &amp; edit</div>
   <button class="ib" onclick="newCard()">&#43;</button>
   <button class="ib" onclick="view='home';render()">&#8962;</button></div>
-  <div class="scroll">${h||'<div class="pnl"><p>No cards.</p></div>'}</div>`;
+  <div class="fbar">
+    <button class="fchip ${bFilter==='all'?'on':''}" onclick="setFilter('all')">All<span class="n">${totalN}</span></button>
+    ${avail.map(d=>`<button class="fchip ${bFilter===d.k?'on':''}" onclick="setFilter('${d.k}')">${d.n}<span class="n">${LIVE.filter(c=>c.d===d.k).length}</span></button>`).join('')}
+  </div>
+  <div class="scroll" id="bscroll">${h||'<div class="pnl"><p>No cards.</p></div>'}</div>`;
+ const sc=document.getElementById('bscroll');
+ if(sc)sc.scrollTop=bScroll;
+ const act=document.querySelector('.fchip.on');
+ if(act&&act.scrollIntoView)act.scrollIntoView({block:'nearest',inline:'center'});
 }
+function tapItem(id){openC=(openC===id)?null:id;render()}
+function setFilter(k){bFilter=k;bScroll=0;openC=null;render()}
+function openBrowse(){bScroll=0;openC=null;view='browse';render()}
 function jump(p){idx=p;flipped=false;openC=null;view='study';save();render()}
 
 function editCard(id){editId=id;editNew=false;view='edit';render()}
